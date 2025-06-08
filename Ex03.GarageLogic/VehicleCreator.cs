@@ -8,23 +8,23 @@ namespace Ex03.GarageLogic
         {
             Vehicle newVehicle = null;
 
-            switch(i_VehicleType)
+            switch (i_VehicleType)
             {
-                case "FuelCar":
-                    newVehicle = new FuelCar(i_LicenseID, i_ModelName);
-                    break;
-                case "ElectricCar":
-                    newVehicle = new ElectricCar(i_LicenseID, i_ModelName);
-                    break;
-                case "FuelMotorcycle":
-                    newVehicle = new FuelMotorcycle(i_LicenseID, i_ModelName);
-                    break;
+                // case "FuelCar":
+                //     newVehicle = new FuelCar(i_LicenseID, i_ModelName);
+                //     break;
+                // case "ElectricCar":
+                //     newVehicle = new ElectricCar(i_LicenseID, i_ModelName);
+                //     break;
+                // case "FuelMotorcycle":
+                //     newVehicle = new FuelMotorcycle(i_LicenseID, i_ModelName);
+                //     break;
                 case "ElectricMotorcycle":
                     newVehicle = new ElectricMotorcycle(i_LicenseID, i_ModelName);
                     break;
-                case "Truck":
-                    newVehicle = new Truck(i_LicenseID, i_ModelName);
-                    break;
+                    // case "Truck":
+                    //     newVehicle = new Truck(i_LicenseID, i_ModelName);
+                    //     break;
             }
 
             return newVehicle;
@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
 
         public static List<string> SupportedTypes
         {
-            get{return new List<string> { "FuelCar", "ElectricCar", "FuelMotorcycle", "ElectricMotorcycle", "Truck" }; }
+            get { return new List<string> { "FuelCar", "ElectricCar", "FuelMotorcycle", "ElectricMotorcycle", "Truck" }; }
         }
     }
 }
