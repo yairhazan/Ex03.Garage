@@ -1,0 +1,10 @@
+// Vehicle questions
+1: "Enter tire model"
+2: "Enter tire pressure"
+
+// Motorcycle questions
+3: "Enter license type"
+4: "Enter engine volume"
+
+//fuel questions
+5: "Enter hours left in battery" / "fuel left in tank"

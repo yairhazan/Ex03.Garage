@@ -1,4 +1,4 @@
-namespace Ex03.GarageLogic.Vehicles;
+namespace Ex03.GarageLogic;
 
 public abstract class Motorcycle : Vehicle
 {
