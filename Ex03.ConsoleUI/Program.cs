@@ -1,8 +1,10 @@
-﻿public class Program{
+﻿using Ex03.GarageLogic;
+
+public class Program{
     public static void Main(string[] args){
         bool exit = false;
+        Console.WriteLine("Welcome to our garage!");
         while(!exit){
-            Console.WriteLine("Welcome to our garage!");
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Load vehicles from `Vehicles.db`");
             Console.WriteLine("2. Insert new vehicle into the garage");
@@ -62,8 +64,155 @@
         }
     }
 
+    
     private static void InsertNewVehicle(){
         Console.WriteLine("Inserting new vehicle into the garage");
+        Console.WriteLine("Enter the license plate:");
+        string licensePlate = Console.ReadLine();
+        bool vehicleExists = Ex03.GarageLogic.Garage.checkIfVehicleExists(licensePlate);
+        if(vehicleExists){
+            Console.WriteLine("Vehicle already exists, changing status to InRepair");
+            Ex03.GarageLogic.Garage.changeVehicleStatus(licensePlate, "InRepair");
+        }else{
+            Console.WriteLine("Vehicle does not exist, creating new vehicle");
+            Console.WriteLine("Enter the model name:");
+            string modelName = Console.ReadLine();
+            try {
+                Vehicle newVehicle = Ex03.GarageLogic.Garage.createNewVehicle(licensePlate, modelName);
+                //a list of strings that will hold questions
+                List<string> questions = newVehicle.getQuestions();
+                List<string> answers = new List<string>();
+                foreach(string question in questions){
+                    Console.WriteLine(question);
+                    string answer = Console.ReadLine(); 
+                    answers.Add(answer);
+                }
+                newVehicle.setAnswers(answers);
+                Console.WriteLine("Vehicle created successfully");
+            }
+            catch (ArgumentException ae){
+                Console.WriteLine($"Argument error: {ae.Message}");
+            }
+            catch (FormatException fe){
+                Console.WriteLine($"Format error: {fe.Message}");
+            }catch(Exception ex){
+                Console.WriteLine($"Error creating vehicle: {ex.Message}");
+            }
+        }
+    }
 
+    private static void ShowListOfVehicles(){
+        Console.WriteLine("Optionally enter the status filter:");
+        string status = Console.ReadLine();
+        List<Vehicle> vehicles = Ex03.GarageLogic.Garage.getListOfVehicles(status);
+        Console.WriteLine("List of vehicles:");
+        foreach(Vehicle vehicle in vehicles){
+            Console.WriteLine(vehicle.ToString());
+        }
+    }
+    private static Vehicle getVehiclebyLicensePlate(){
+        Console.WriteLine("Enter the license plate:");
+        string licensePlate = Console.ReadLine();
+        return Garage.getVehicle(licensePlate);
+    }
+    private static void ChangeVehicleStatus(){
+        try{ Vehicle vehicle = getVehiclebyLicensePlate();
+            Console.WriteLine("Enter the new status:");
+            Console.WriteLine("1. InRepair");
+            Console.WriteLine("2. Repaired");
+            Console.WriteLine("3. Paid");
+            string status = Console.ReadLine();
+            if(status == "1"){
+                status = "InRepair";
+            }else if(status == "2"){
+                status = "Repaired";
+            }else if(status == "3"){
+                status = "Paid";
+            }else{
+                Console.WriteLine("Invalid status");
+                return;
+            }
+            vehicle.setStatus(status);
+            Console.WriteLine("Vehicle status changed successfully");
+        }
+        catch (ArgumentException ae){
+            Console.WriteLine($"Argument error: {ae.Message}");
+        }
+        catch (FormatException fe){
+            Console.WriteLine($"Format error: {fe.Message}");
+        }
+        catch (Exception ex){
+            Console.WriteLine($"Error changing vehicle status: {ex.Message}");
+        }
+    }
+
+    private static void InflateTiresToMaxPressure(){
+       
+        try{ 
+            Vehicle vehicle = getVehiclebyLicensePlate();
+            vehicle.inflateTiresToMaxPressure();
+            Console.WriteLine("Tires inflated to max pressure successfully");
+        }
+        catch (ArgumentException ae){
+            Console.WriteLine($"Argument error: {ae.Message}");
+        }
+        catch (FormatException fe){
+            Console.WriteLine($"Format error: {fe.Message}");
+        }
+        catch (Exception ex){
+            Console.WriteLine($"Error inflating tires to max pressure: {ex.Message}");
+        }
+    }
+    
+    private static void RefuelVehicle(){
+        try{ 
+            Vehicle vehicle = getVehiclebyLicensePlate();
+            Console.WriteLine("Enter the fuel type:");
+            int i = 0;
+            foreach(eFuelType fuel in Enum.GetValues(typeof(eFuelType))){
+                Console.WriteLine($"{i} - {fuel}");
+                i++;
+            }
+            string fuelType = Console.ReadLine();
+            if(!Enum.IsDefined(typeof(eFuelType), fuelType)){
+                Console.WriteLine("Invalid fuel type");
+                return;
+            }
+            Console.WriteLine("Enter the amount:");
+            float amount = float.Parse(Console.ReadLine());
+            vehicle.refuel(fuelType, amount);
+            Console.WriteLine("Vehicle refueled successfully");
+        }
+        catch (ArgumentException ae){
+            Console.WriteLine($"Argument error: {ae.Message}");
+        }
+        catch (FormatException fe){
+            Console.WriteLine($"Format error: {fe.Message}");
+        }
+        catch (Exception ex){
+            Console.WriteLine($"Error refueling vehicle: {ex.Message}");
+        }
+    }
+    private static void ChargeElectricVehicle(){
+        try{
+            Vehicle vehicle = getVehiclebyLicensePlate();
+            Console.WriteLine("Enter the amount of time to charge in minutes:");
+            float time = float.Parse(Console.ReadLine());
+            vehicle.charge(time);
+            Console.WriteLine("Vehicle charged successfully");
+        }
+        catch (ArgumentException ae){
+            Console.WriteLine($"Argument error: {ae.Message}");
+        }
+        catch (FormatException fe){
+            Console.WriteLine($"Format error: {fe.Message}");
+        }
+        catch (Exception ex){
+            Console.WriteLine($"Error charging vehicle: {ex.Message}");
+        }
+    }
+    private static void DisplayFullVehicleDetails(){
+        Vehicle vehicle = getVehiclebyLicensePlate();
+        Console.WriteLine(vehicle.ToString());
     }
 }
