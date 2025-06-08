@@ -1,11 +1,17 @@
-public class Motorcycle : Vehicle
+namespace Ex03.GarageLogic.Vehicles;
+
+public abstract class Motorcycle : Vehicle
 {
-    private readonly int m_EngineVolume;
-    private readonly List<Tire> m_Tires;
+    protected int m_EngineVolume;
+    protected readonly int k_TireNumber = 2;
+    protected int k_max_tire_pressure = 30;
+
+    protected eLicenseType m_LicenseType;
 
     public Motorcycle(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
-        m_questions.Add("Enter license type");
-        m_questions.Add("Enter engine volume");
+        base.m_Questions.Add(3, new Question("Enter license type", typeof(string)));
+        base.m_Questions.Add(4, new Question("Enter engine volume", typeof(int), 0, int.MaxValue));
     }
+
 }
