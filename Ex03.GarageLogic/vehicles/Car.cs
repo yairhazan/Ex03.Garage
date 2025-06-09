@@ -13,4 +13,8 @@ public abstract class Car : Vehicle
         base.m_Questions.Add(4, new Question("Enter car doors", typeof(eCarDoors)));
     }
 
+    public override string ToString()
+    {
+        return $"{base.ToString()}\nColor: {m_Color}\nNumber of doors: {m_Doors}";
+    }
 }

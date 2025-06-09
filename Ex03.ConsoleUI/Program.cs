@@ -73,7 +73,28 @@ public class Program
         }
     }
 
-
+    public static string getVehicleType()
+    {
+        while (true)
+        {
+        int i = 0;
+        foreach (string VehicleType in VehicleCreator.SupportedTypes)
+        {
+            Console.WriteLine($"{i} - {VehicleType}");
+            i++;
+        }
+            Console.WriteLine("Enter the vehicle type:");
+            string vehicleType = Console.ReadLine();
+            if (VehicleCreator.SupportedTypes.Contains(vehicleType))
+            {
+                return vehicleType;
+            }
+            else
+            {
+                Console.WriteLine("Invalid vehicle type, try again");
+            }
+        }
+    }
     private static void InsertNewVehicle()
     {
         Console.WriteLine("Inserting new vehicle into the garage");
@@ -88,17 +109,18 @@ public class Program
         else
         {
             Console.WriteLine("Vehicle does not exist, creating new vehicle");
+            string vehicleType = getVehicleType();
             Console.WriteLine("Enter the model name:");
             string modelName = Console.ReadLine();
             try
             {
-                Vehicle newVehicle = VehicleCreator.CreateVehicle(licensePlate, modelName);
+                Vehicle newVehicle = VehicleCreator.CreateVehicle(vehicleType, licensePlate, modelName);
                 //a list of strings that will hold questions
                 Dictionary<int, Question> questions = newVehicle.getQuestions();
                 Dictionary<int, string> answers = new Dictionary<int, string>();
                 foreach (KeyValuePair<int, Question> question in questions)
                 {
-                    Console.WriteLine(question.Value.Question);
+                    Console.WriteLine(question.Value.m_Question_text);
                     string answer = Console.ReadLine();
                     answers.Add(question.Key, answer);
                 }
@@ -124,7 +146,7 @@ public class Program
     {
         Console.WriteLine("Optionally enter the status filter:");
         string status = Console.ReadLine();
-        List<Vehicle> vehicles = Ex03.GarageLogic.Garage.getListOfVehicles(status);
+        List<Vehicle> vehicles = garage.getListOfVehicles(status);
         Console.WriteLine("List of vehicles:");
         foreach (Vehicle vehicle in vehicles)
         {
@@ -135,36 +157,44 @@ public class Program
     {
         Console.WriteLine("Enter the license plate:");
         string licensePlate = Console.ReadLine();
-        return Garage.getVehicle(licensePlate);
+        while (!garage.checkIfVehicleExists(licensePlate))
+        {
+            Console.WriteLine("Vehicle does not exist. Please enter a valid license plate (or X to exit):");
+            licensePlate = Console.ReadLine();
+        }
+        return garage.getVehicle(licensePlate);
     }
     private static void ChangeVehicleStatus()
     {
         try
         {
             Vehicle vehicle = getVehiclebyLicensePlate();
-            Console.WriteLine("Enter the new status:");
+            Console.WriteLine("Enter the new status: (1-3)");
             Console.WriteLine("1. InRepair");
             Console.WriteLine("2. Repaired");
             Console.WriteLine("3. Paid");
-            string status = Console.ReadLine();
-            if (status == "1")
+            eVehicleStatus newStatus;
+            while (true)
             {
-                status = "InRepair";
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        newStatus = eVehicleStatus.InRepair;
+                        break;
+                    case "2":
+                        newStatus = eVehicleStatus.Repaired;
+                        break;
+                    case "3":
+                        newStatus = eVehicleStatus.Paid;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid status. Please enter 1, 2 or 3:");
+                        continue;
+                }
+                break;
             }
-            else if (status == "2")
-            {
-                status = "Repaired";
-            }
-            else if (status == "3")
-            {
-                status = "Paid";
-            }
-            else
-            {
-                Console.WriteLine("Invalid status");
-                return;
-            }
-            vehicle.setStatus(status);
+            garage.changeVehicleStatus(vehicle.m_LicenseID, newStatus);
             Console.WriteLine("Vehicle status changed successfully");
         }
         catch (ArgumentException ae)
@@ -187,7 +217,7 @@ public class Program
         try
         {
             Vehicle vehicle = getVehiclebyLicensePlate();
-            vehicle.inflateTiresToMaxPressure();
+            garage.InflateTiresToMaxPressure(vehicle.m_LicenseID);
             Console.WriteLine("Tires inflated to max pressure successfully");
         }
         catch (ArgumentException ae)
@@ -209,6 +239,7 @@ public class Program
         try
         {
             Vehicle vehicle = getVehiclebyLicensePlate();
+            string fuelType;
             Console.WriteLine("Enter the fuel type:");
             int i = 0;
             foreach (eFuelType fuel in Enum.GetValues(typeof(eFuelType)))
@@ -216,15 +247,24 @@ public class Program
                 Console.WriteLine($"{i} - {fuel}");
                 i++;
             }
-            string fuelType = Console.ReadLine();
+            fuelType = Console.ReadLine();
             if (!Enum.IsDefined(typeof(eFuelType), fuelType))
             {
-                Console.WriteLine("Invalid fuel type");
-                return;
+                throw new ArgumentException("Invalid fuel type");
             }
-            Console.WriteLine("Enter the amount:");
-            float amount = float.Parse(Console.ReadLine());
-            vehicle.refuel(fuelType, amount);
+
+            float amount;
+            while (true)
+            {
+                Console.WriteLine("Enter the amount:");
+                if (float.TryParse(Console.ReadLine(), out amount))
+                {
+                    break;
+                }
+                Console.WriteLine("Invalid amount. Please enter a valid number.");
+            }
+
+            garage.refuelVehicle(vehicle.m_LicenseID, fuelType, amount);
             Console.WriteLine("Vehicle refueled successfully");
         }
         catch (ArgumentException ae)
@@ -247,7 +287,7 @@ public class Program
             Vehicle vehicle = getVehiclebyLicensePlate();
             Console.WriteLine("Enter the amount of time to charge in minutes:");
             float time = float.Parse(Console.ReadLine());
-            vehicle.charge(time);
+            garage.chargeVehicle(vehicle.m_LicenseID, time);
             Console.WriteLine("Vehicle charged successfully");
         }
         catch (ArgumentException ae)
@@ -266,6 +306,6 @@ public class Program
     private static void DisplayFullVehicleDetails()
     {
         Vehicle vehicle = getVehiclebyLicensePlate();
-        Console.WriteLine(vehicle.ToString());
+        Console.WriteLine(vehicle);
     }
 }

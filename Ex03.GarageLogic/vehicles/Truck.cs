@@ -66,4 +66,9 @@ public class Truck : Vehicle
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_MaxTirePressure));
         }
     }
+
+    public override string ToString()
+    {
+        return $"{base.ToString()}\nCarrying dangerous materials: {m_IsCarryingDangerousMaterials}\nMax carrying weight: {m_MaxCarryingWeight:F1} tons";
+    }
 }

@@ -19,4 +19,12 @@ public class Tire
             m_CurrentAirPressure = m_MaxAirPressure;
         }
     }
+    public float getCurrentAirPressure()
+    {
+        return m_CurrentAirPressure;
+    }
+    public float getMaxAirPressure()
+    {
+        return m_MaxAirPressure;
+    }
 }

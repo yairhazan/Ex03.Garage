@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ex03.ConsoleUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3f5f0b7517e39fa237ea2e60617d0da457f7036")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6b02786ee58081820f3e7500ec2805a4dc27c56")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ex03.ConsoleUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ex03.ConsoleUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

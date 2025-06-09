@@ -35,6 +35,44 @@ namespace Ex03.GarageLogic
         {
             m_Vehicles_Status[licensePlate] = (status, m_Vehicles_Status[licensePlate].Item2);
         }
+        public List<Vehicle> getListOfVehicles(string status)
+        {
+            List<Vehicle> vehicles = new List<Vehicle>();
+            if (status == "")
+            {
+                vehicles = m_Vehicles.Values.ToList();
+            }
+            else
+            {
+                foreach (string LicensePlate in m_Vehicles_Status.Keys)
+                {
+                    if (m_Vehicles_Status[LicensePlate].Item1 == (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), status))
+                    {
+                        vehicles.Add(m_Vehicles[LicensePlate]);
+                    }
+                }
+            }
+            return vehicles;
+        }
+        public Vehicle getVehicle(string licensePlate)
+        {
+            return m_Vehicles[licensePlate];
+        }
+        public void InflateTiresToMaxPressure(string licensePlate)
+        {
+            foreach (Tire tire in m_Vehicles[licensePlate].m_Tires)
+            {
+                tire.Inflate(tire.getMaxAirPressure() - tire.getCurrentAirPressure());
+            }
+        }
+        public void refuelVehicle(string licensePlate, string fuelType, float amount)
+        {
+            m_Vehicles[licensePlate].getEngine().FillEnergy(amount);
+        }
+        public void chargeVehicle(string licensePlate, float time)
+        {
+            m_Vehicles[licensePlate].getEngine().FillEnergy(time);
+        }
 
     }
 }

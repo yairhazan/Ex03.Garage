@@ -1,17 +1,13 @@
 namespace Ex03.GarageLogic.Vehicles;
 
-public class FuelCar : Car
-{   
-    private eCarColor m_Color{get; set;}
-    private eCarDoors m_Doors{get; set;}
-    private FuelEngine m_FuelEngine{get; set;}
-    private readonly float k_MaxFuelAmount = 48f;
-    public FuelCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
+public class ElectricCar : Car
+{
+    private ElectricEngine m_ElectricEngine;
+    private readonly float k_MaxBatteryTime = 3.2f;
+    public ElectricCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
-        base.m_Questions.Add(5, new Question("Enter fuel amount", typeof(float)));
-        base.m_Questions.Add(6, new Question("Enter fuel type", typeof(string)));
-        m_FuelEngine = new FuelEngine(48f, 0, eFuelType.Octan95);
-
+        base.m_Questions.Add(5, new Question("Enter hours left in battery", typeof(float)));
+        m_ElectricEngine = new ElectricEngine(k_MaxBatteryTime, 0);
     }
 
     public override Dictionary<int, Question> getQuestions()
@@ -31,17 +27,14 @@ public class FuelCar : Car
         }
         m_Color = (eCarColor)Enum.Parse(typeof(eCarColor), i_Answers[3]);
         m_Doors = (eCarDoors)Enum.Parse(typeof(eCarDoors), i_Answers[4]);
-        float fuel_amount = float.Parse(i_Answers[5]);
-        eFuelType fuel_type = (eFuelType)Enum.Parse(typeof(eFuelType), i_Answers[6]);
+        float hours_left_in_battery = float.Parse(i_Answers[5]);
 
-        m_FuelEngine = new FuelEngine(k_MaxFuelAmount, fuel_amount, fuel_type);
+        m_ElectricEngine = new ElectricEngine(k_MaxBatteryTime, hours_left_in_battery);
 
         for (int i = 0; i < k_TireNumber; i++)
         {
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_max_tire_pressure));
         }
-
-
     }
 
     public override void loadFromDB(List<string> i_DB_Fields)
@@ -54,13 +47,14 @@ public class FuelCar : Car
         }
         m_Color = (eCarColor)Enum.Parse(typeof(eCarColor), i_DB_Fields[8]);
         m_Doors = (eCarDoors)Enum.Parse(typeof(eCarDoors), i_DB_Fields[9]);
-        float fuel_percentage = float.Parse(i_DB_Fields[3]);
-        float current_fuel_amount = fuel_percentage * k_MaxFuelAmount;
-        m_FuelEngine = new FuelEngine(k_MaxFuelAmount, current_fuel_amount, eFuelType.Octan95);
+        float energy_percentage = float.Parse(i_DB_Fields[3]);
+        float current_battery_time = energy_percentage * k_MaxBatteryTime;
+
+        m_ElectricEngine = new ElectricEngine(k_MaxBatteryTime, current_battery_time);
+
         for (int i = 0; i < k_TireNumber; i++)
         {
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_max_tire_pressure));
         }
     }
-
-}   
+}

@@ -7,4 +7,8 @@ public class ElectricEngine : Engine
     {
     }
 
+    public override string ToString()
+    {
+        return $"Battery time: {base.ToString()} hours";
+    }
 }

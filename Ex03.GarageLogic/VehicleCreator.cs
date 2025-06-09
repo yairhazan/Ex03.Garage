@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ex03.GarageLogic.Vehicles;
 
 namespace Ex03.GarageLogic
 {
@@ -10,21 +11,21 @@ namespace Ex03.GarageLogic
 
             switch (i_VehicleType)
             {
-                // case "FuelCar":
-                //     newVehicle = new FuelCar(i_LicenseID, i_ModelName);
-                //     break;
-                // case "ElectricCar":
-                //     newVehicle = new ElectricCar(i_LicenseID, i_ModelName);
-                //     break;
-                // case "FuelMotorcycle":
-                //     newVehicle = new FuelMotorcycle(i_LicenseID, i_ModelName);
-                //     break;
+                case "FuelCar":
+                    newVehicle = new FuelCar(i_LicenseID, i_ModelName);
+                    break;
+                case "ElectricCar":
+                    newVehicle = new ElectricCar(i_LicenseID, i_ModelName);
+                    break;
+                case "FuelMotorcycle":
+                    newVehicle = new FuelMotorcycle(i_LicenseID, i_ModelName);
+                    break;
                 case "ElectricMotorcycle":
                     newVehicle = new ElectricMotorcycle(i_LicenseID, i_ModelName);
                     break;
-                    // case "Truck":
-                    //     newVehicle = new Truck(i_LicenseID, i_ModelName);
-                    //     break;
+                    case "Truck":
+                        newVehicle = new Truck(i_LicenseID, i_ModelName);
+                        break;
             }
 
             return newVehicle;

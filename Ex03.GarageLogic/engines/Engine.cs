@@ -18,4 +18,9 @@ public abstract class Engine
             m_CurrentEnergyAmount = m_MaxEnergyAmount;
         }
     }
+
+    public override string ToString()
+    {
+        return $"Current energy: {m_CurrentEnergyAmount:F2}/{m_MaxEnergyAmount:F2}";
+    }
 }

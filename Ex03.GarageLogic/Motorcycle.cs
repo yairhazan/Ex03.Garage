@@ -14,4 +14,8 @@ public abstract class Motorcycle : Vehicle
         base.m_Questions.Add(4, new Question("Enter engine volume", typeof(int), 0, int.MaxValue));
     }
 
+    public override string ToString()
+    {
+        return $"{base.ToString()}\nLicense type: {m_LicenseType}\nEngine volume: {m_EngineVolume}cc";
+    }
 }

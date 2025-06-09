@@ -7,4 +7,8 @@ public class FuelEngine : Engine
         m_FuelType = i_FuelType;
     }
 
+    public override string ToString()
+    {
+        return $"Fuel type: {m_FuelType}, {base.ToString()}";
+    }
 }

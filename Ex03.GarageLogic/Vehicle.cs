@@ -2,6 +2,7 @@ namespace Ex03.GarageLogic;
 
 public abstract class Vehicle
 {
+    protected Engine m_Engine;
 
     public string m_LicenseID;
     public string m_ModelName;
@@ -19,5 +20,13 @@ public abstract class Vehicle
     public abstract void parseAnswers(Dictionary<int, string> i_Answers);
     public abstract Dictionary<int, Question> getQuestions();
     public abstract void loadFromDB(List<string> i_DB_Fields);
+    public Engine getEngine()
+    {
+        return m_Engine;
+    }
+    public override string ToString()
+    {
+        return $"Vehicle type: {GetType().Name}\nLicense plate: {m_LicenseID}\nModel name: {m_ModelName}\nEnergy percentage: {m_EnergyPercentage}\nTires: {string.Join(", ", m_Tires)}";
+    }
 }
 
