@@ -26,5 +26,15 @@ namespace Ex03.GarageLogic
                 m_Vehicles_Status.Add(licensePlate, (eVehicleStatus.InRepair, new ContactDetails(db_field[6], db_field[7])));
             }
         }
+        public bool checkIfVehicleExists(string licensePlate)
+        {
+            return m_Vehicles.ContainsKey(licensePlate);
+        }
+
+        public void changeVehicleStatus(string licensePlate, eVehicleStatus status)
+        {
+            m_Vehicles_Status[licensePlate] = (status, m_Vehicles_Status[licensePlate].Item2);
+        }
+
     }
 }

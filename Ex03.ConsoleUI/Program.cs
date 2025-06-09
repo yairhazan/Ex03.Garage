@@ -2,8 +2,10 @@
 
 public class Program
 {
+    private static Garage garage = new Garage();
     public static void Main(string[] args)
     {
+        
         bool exit = false;
         Console.WriteLine("Welcome to our garage!");
         while (!exit)
@@ -62,7 +64,7 @@ public class Program
         //load vehicles from `Vehicles.db`
         try
         {
-            Ex03.GarageLogic.Garage.LoadVehicles();
+            garage.LoadVehicles();  
             Console.WriteLine("Vehicles loaded successfully");
         }
         catch (Exception ex)
@@ -77,11 +79,11 @@ public class Program
         Console.WriteLine("Inserting new vehicle into the garage");
         Console.WriteLine("Enter the license plate:");
         string licensePlate = Console.ReadLine();
-        bool vehicleExists = Ex03.GarageLogic.Garage.checkIfVehicleExists(licensePlate);
+        bool vehicleExists = garage.checkIfVehicleExists(licensePlate);
         if (vehicleExists)
         {
             Console.WriteLine("Vehicle already exists, changing status to InRepair");
-            Ex03.GarageLogic.Garage.changeVehicleStatus(licensePlate, "InRepair");
+            garage.changeVehicleStatus(licensePlate, eVehicleStatus.InRepair);
         }
         else
         {
@@ -90,17 +92,17 @@ public class Program
             string modelName = Console.ReadLine();
             try
             {
-                Vehicle newVehicle = Ex03.GarageLogic.Garage.createNewVehicle(licensePlate, modelName);
+                Vehicle newVehicle = VehicleCreator.CreateVehicle(licensePlate, modelName);
                 //a list of strings that will hold questions
-                List<string> questions = newVehicle.getQuestions();
-                List<string> answers = new List<string>();
-                foreach (string question in questions)
+                Dictionary<int, Question> questions = newVehicle.getQuestions();
+                Dictionary<int, string> answers = new Dictionary<int, string>();
+                foreach (KeyValuePair<int, Question> question in questions)
                 {
-                    Console.WriteLine(question);
+                    Console.WriteLine(question.Value.Question);
                     string answer = Console.ReadLine();
-                    answers.Add(answer);
+                    answers.Add(question.Key, answer);
                 }
-                newVehicle.setAnswers(answers);
+                newVehicle.parseAnswers(answers);
                 Console.WriteLine("Vehicle created successfully");
             }
             catch (ArgumentException ae)
