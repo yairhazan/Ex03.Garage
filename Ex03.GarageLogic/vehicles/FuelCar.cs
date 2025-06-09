@@ -9,7 +9,7 @@ public class FuelCar : Car
     public FuelCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
         base.m_Questions.Add(5, new Question("Enter fuel amount", typeof(float)));
-        base.m_Questions.Add(6, new Question("Enter fuel type", typeof(string)));
+        base.m_Questions.Add(6, new Question("Enter fuel type (Octan95, Octan96, Octan98, Soler)", typeof(string)));
         m_FuelEngine = new FuelEngine(48f, 0, eFuelType.Octan95);
 
     }

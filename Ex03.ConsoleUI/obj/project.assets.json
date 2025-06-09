@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/ereledree/.nuget/packages/": {}
+    "/Users/yairhazan/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ereledree/repos/Ex03.Garage/Ex03.ConsoleUI/Ex03.ConsoleUI.csproj",
+      "projectUniqueName": "/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/Ex03.ConsoleUI.csproj",
       "projectName": "Ex03.ConsoleUI",
-      "projectPath": "/Users/ereledree/repos/Ex03.Garage/Ex03.ConsoleUI/Ex03.ConsoleUI.csproj",
-      "packagesPath": "/Users/ereledree/.nuget/packages/",
-      "outputPath": "/Users/ereledree/repos/Ex03.Garage/Ex03.ConsoleUI/obj/",
+      "projectPath": "/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/Ex03.ConsoleUI.csproj",
+      "packagesPath": "/Users/yairhazan/.nuget/packages/",
+      "outputPath": "/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/ereledree/.nuget/NuGet/NuGet.Config"
+        "/Users/yairhazan/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -51,8 +51,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/ereledree/repos/Ex03.Garage/Ex03.GarageLogic/GarageLogic.csproj": {
-              "projectPath": "/Users/ereledree/repos/Ex03.Garage/Ex03.GarageLogic/GarageLogic.csproj"
+            "/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.GarageLogic/GarageLogic.csproj": {
+              "projectPath": "/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.GarageLogic/GarageLogic.csproj"
             }
           }
         }

@@ -26,7 +26,7 @@ public abstract class Vehicle
     }
     public override string ToString()
     {
-        return $"Vehicle type: {GetType().Name}\nLicense plate: {m_LicenseID}\nModel name: {m_ModelName}\nEnergy percentage: {m_EnergyPercentage}\nTires: {string.Join(", ", m_Tires)}";
+        return $"License plate: {m_LicenseID}\nModel name: {m_ModelName}\nEnergy percentage: {m_EnergyPercentage}\nTire: {m_Tires[0]}";
     }
 }
 

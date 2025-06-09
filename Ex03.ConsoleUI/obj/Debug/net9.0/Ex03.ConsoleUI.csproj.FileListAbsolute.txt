@@ -17,3 +17,22 @@
 /Users/ereledree/repos/Ex03.Garage/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.pdb
 /Users/ereledree/repos/Ex03.Garage/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.genruntimeconfig.cache
 /Users/ereledree/repos/Ex03.Garage/Ex03.ConsoleUI/obj/Debug/net9.0/ref/Ex03.ConsoleUI.dll
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.dll
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/refint/Ex03.ConsoleUI.dll
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.pdb
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.csproj.AssemblyReference.cache
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.AssemblyInfoInputs.cache
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.AssemblyInfo.cs
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.csproj.CoreCompileInputs.cache
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.sourcelink.json
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/bin/Debug/net9.0/Ex03.ConsoleUI
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/bin/Debug/net9.0/Ex03.ConsoleUI.deps.json
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/bin/Debug/net9.0/Ex03.ConsoleUI.runtimeconfig.json
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/bin/Debug/net9.0/Ex03.ConsoleUI.dll
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/bin/Debug/net9.0/Ex03.ConsoleUI.pdb
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/bin/Debug/net9.0/GarageLogic.dll
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/bin/Debug/net9.0/GarageLogic.pdb
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.Con.97A6B4C2.Up2Date
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/Ex03.ConsoleUI.genruntimeconfig.cache
+/Users/yairhazan/Downloads/DN_IDC_2025B_Ex03/Ex02 Yair 208127423 Eral 212081129/Ex03.ConsoleUI/obj/Debug/net9.0/ref/Ex03.ConsoleUI.dll

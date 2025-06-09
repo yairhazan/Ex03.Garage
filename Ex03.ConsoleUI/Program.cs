@@ -5,7 +5,7 @@ public class Program
     private static Garage garage = new Garage();
     public static void Main(string[] args)
     {
-        
+        Console.Clear();
         bool exit = false;
         Console.WriteLine("Welcome to our garage!");
         while (!exit)
@@ -77,21 +77,22 @@ public class Program
     {
         while (true)
         {
-        int i = 0;
-        foreach (string VehicleType in VehicleCreator.SupportedTypes)
-        {
-            Console.WriteLine($"{i} - {VehicleType}");
-            i++;
-        }
-            Console.WriteLine("Enter the vehicle type:");
-            string vehicleType = Console.ReadLine();
-            if (VehicleCreator.SupportedTypes.Contains(vehicleType))
+            int i = 0;
+            foreach (string VehicleType in VehicleCreator.SupportedTypes)
             {
-                return vehicleType;
+                Console.WriteLine($"{i} - {VehicleType}");
+                i++;
+            }
+            Console.WriteLine($"Enter the vehicle type number: 0-{i-1}");
+            if (int.TryParse(Console.ReadLine(), out int typeNumber) && 
+                typeNumber >= 0 && 
+                typeNumber < VehicleCreator.SupportedTypes.Count)
+            {
+                return VehicleCreator.SupportedTypes[typeNumber];
             }
             else
             {
-                Console.WriteLine("Invalid vehicle type, try again");
+                Console.WriteLine("Invalid vehicle type number, try again");
             }
         }
     }
@@ -148,9 +149,12 @@ public class Program
         string status = Console.ReadLine();
         List<Vehicle> vehicles = garage.getListOfVehicles(status);
         Console.WriteLine("List of vehicles:");
+        int i = 0;
         foreach (Vehicle vehicle in vehicles)
         {
-            Console.WriteLine(vehicle.ToString());
+            Console.WriteLine(i + ". " + vehicle.ToString());
+            Console.WriteLine("--------------------------------");
+            i++;
         }
     }
     private static Vehicle getVehiclebyLicensePlate()
@@ -161,6 +165,10 @@ public class Program
         {
             Console.WriteLine("Vehicle does not exist. Please enter a valid license plate (or X to exit):");
             licensePlate = Console.ReadLine();
+            if (licensePlate.ToUpper() == "X")
+            {
+                throw new Exception("Exiting...");
+            }
         }
         return garage.getVehicle(licensePlate);
     }

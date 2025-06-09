@@ -27,4 +27,12 @@ public class Tire
     {
         return m_MaxAirPressure;
     }
+    public string getTireModel()
+    {
+        return m_TireModel;
+    }
+    public override string ToString()
+    {
+        return $"Model: {m_TireModel}, Current pressure: {m_CurrentAirPressure}, Max pressure: {m_MaxAirPressure}";
+    }
 }

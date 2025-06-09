@@ -13,8 +13,12 @@ namespace Ex03.GarageLogic
             //read from vehicles.db
             string[] lines = System.IO.File.ReadAllLines("vehicles.db");
             Dictionary<int, string> answers = new Dictionary<int, string>();
+            int i = 0;
             foreach (string line in lines)
             {
+                if (line.StartsWith("*")){
+                    break;
+                }
                 //for vehiclde in vehicles.db, use constructor to create vehicle
                 List<string> db_field = line.Split(',').ToList();
                 string vehicleType = db_field[0];
@@ -24,6 +28,7 @@ namespace Ex03.GarageLogic
                 vehicleToAdd.loadFromDB(db_field);
                 m_Vehicles.Add(licensePlate, vehicleToAdd);
                 m_Vehicles_Status.Add(licensePlate, (eVehicleStatus.InRepair, new ContactDetails(db_field[6], db_field[7])));
+                i++;
             }
         }
         public bool checkIfVehicleExists(string licensePlate)
