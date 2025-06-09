@@ -1,10 +1,10 @@
 namespace Ex03.GarageLogic.Vehicles;
 
 public class FuelCar : Car
-{   
-    private eCarColor m_Color{get; set;}
-    private eCarDoors m_Doors{get; set;}
-    private FuelEngine m_FuelEngine{get; set;}
+{
+    private eCarColor m_Color { get; set; }
+    private eCarDoors m_Doors { get; set; }
+    private FuelEngine m_FuelEngine { get; set; }
     private readonly float k_MaxFuelAmount = 48f;
     public FuelCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
@@ -63,4 +63,4 @@ public class FuelCar : Car
         }
     }
 
-}   
+}
