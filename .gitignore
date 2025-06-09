@@ -1,6 +1,8 @@
 # .NET build output directories
 bin/
 obj/
+**/obj/
+**/lib/
 
 # Visual Studio files
 .vs/
@@ -92,4 +94,4 @@ artifacts/
 #!**/[Pp]ackages/repositories.config
 # NuGet v3's project.json files produces more ignorable files
 *.nuget.props
-*.nuget.targets 
+*.nuget.targets
