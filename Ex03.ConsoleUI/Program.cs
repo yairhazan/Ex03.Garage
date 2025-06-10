@@ -151,7 +151,7 @@ public class Program
 
     private static void ShowListOfVehicles()
     {
-        Console.WriteLine("Optionally enter the status filter: 1. InRepair, 2. Repaired, 3. Paid");
+        Console.WriteLine("Optionally enter the status filter: 1. InRepair, 2. Repaired, 3. Paid 4. For all vehicles");
         string status = Console.ReadLine();
         int i_status;
         if (status == "") { i_status = 4; }
@@ -167,7 +167,7 @@ public class Program
         int i = 0;
         foreach (Vehicle vehicle in vehicles)
         {
-            Console.WriteLine(i + ". " + vehicle.ToString());
+            Console.WriteLine(i + ". " + vehicle.m_LicenseID);
             Console.WriteLine("--------------------------------");
             i++;
         }
@@ -367,6 +367,10 @@ public class Program
             Console.WriteLine("Operation cancelled");
             return;
         }
+        (eVehicleStatus, ContactDetails) vehicleDetails = garage.getVehicleDetails(vehicle.m_LicenseID);
+        Console.WriteLine("Vehicle status: " + vehicleDetails.Item1);
+        Console.WriteLine("Vehicle owner: " + vehicleDetails.Item2.m_OwnerName);
+        Console.WriteLine("Vehicle owner phone: " + vehicleDetails.Item2.m_OwnerPhone);
         Console.WriteLine(vehicle);
     }
 }

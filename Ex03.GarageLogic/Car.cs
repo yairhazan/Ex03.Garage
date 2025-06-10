@@ -5,7 +5,7 @@ public abstract class Car : Vehicle
     protected eCarColor m_Color;
     protected int m_Doors;
     protected readonly int k_TireNumber = 4;
-    protected int k_max_tire_pressure = 32;
+    protected float k_max_tire_pressure = 32;
 
     public Car(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {

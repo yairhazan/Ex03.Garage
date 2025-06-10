@@ -107,5 +107,9 @@ namespace Ex03.GarageLogic
             m_Vehicles[licensePlate].getEngine().FillEnergy(time);
         }
 
+        public (eVehicleStatus, ContactDetails) getVehicleDetails(string licensePlate)
+        {
+            return m_Vehicles_Status[licensePlate];
+        }
     }
 }

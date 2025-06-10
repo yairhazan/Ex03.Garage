@@ -22,7 +22,7 @@ public class ElectricCar : Car
         float tire_pressure = float.Parse(i_Answers[2]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0f, k_max_tire_pressure);
         }
         m_Color = (eCarColor)Enum.Parse(typeof(eCarColor), i_Answers[3]);
         m_Doors = int.Parse(i_Answers[4]);
@@ -42,7 +42,7 @@ public class ElectricCar : Car
         float tire_pressure = float.Parse(i_DB_Fields[5]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0f, k_max_tire_pressure);
         }
         m_Color = (eCarColor)Enum.Parse(typeof(eCarColor), i_DB_Fields[8]);
         m_Doors = int.Parse(i_DB_Fields[9]);

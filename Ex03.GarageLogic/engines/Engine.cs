@@ -1,8 +1,9 @@
+using Ex03.GarageLogic;
 public abstract class Engine
 {
     // can be either fuel or electric
-    private readonly float m_MaxEnergyAmount;
-    private float m_CurrentEnergyAmount;
+    public float m_MaxEnergyAmount { get; set; }
+    public float m_CurrentEnergyAmount { get; set; }
 
     public Engine(float i_MaxEnergyAmount, float i_CurrentEnergyAmount)
     {
@@ -15,7 +16,7 @@ public abstract class Engine
         m_CurrentEnergyAmount += i_EnergyToAdd;
         if (m_CurrentEnergyAmount > m_MaxEnergyAmount)
         {
-            m_CurrentEnergyAmount = m_MaxEnergyAmount;
+            throw new ValueRangeException("Fuel amount", 0f, (float)m_MaxEnergyAmount);
         }
     }
 

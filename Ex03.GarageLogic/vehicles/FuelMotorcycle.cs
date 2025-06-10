@@ -10,7 +10,7 @@ public class FuelMotorcycle : Motorcycle
     private readonly float k_MaxFuelAmount = 5.8f;
     public FuelMotorcycle(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
-        base.m_Questions.Add(5, new Question("Enter current fuel amount", typeof(float)));
+        base.m_Questions.Add(5, new Question("Enter current fuel amount", typeof(float), 0, k_MaxFuelAmount));
         base.m_Engine = new FuelEngine(k_MaxFuelAmount, 0, k_FuelType);
     }
 
@@ -27,7 +27,7 @@ public class FuelMotorcycle : Motorcycle
         float tire_pressure = float.Parse(i_Answers[2]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0f, k_max_tire_pressure);
         }
         m_LicenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), i_Answers[3]);
         m_EngineVolume = int.Parse(i_Answers[4]);
@@ -47,7 +47,7 @@ public class FuelMotorcycle : Motorcycle
         float tire_pressure = float.Parse(i_DB_Fields[5]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0f, k_max_tire_pressure);
         }
         m_LicenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), i_DB_Fields[8]);
         m_EngineVolume = int.Parse(i_DB_Fields[9]);
@@ -61,7 +61,7 @@ public class FuelMotorcycle : Motorcycle
     }
     public override string ToString()
     {
-        return base.ToString() + $"\nType: Fuel Motorcycle";
+        return base.ToString() + $"\nType: Fuel Motorcycle\nFuel Type: {k_FuelType}";
     }
 }
 

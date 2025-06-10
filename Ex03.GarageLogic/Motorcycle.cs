@@ -10,7 +10,7 @@ public abstract class Motorcycle : Vehicle
 
     public Motorcycle(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
-        base.m_Questions.Add(3, new Question("Enter license type", typeof(string)));
+        base.m_Questions.Add(3, new Question("Enter license type: A, A1, A2, A or B", typeof(string)));
         base.m_Questions.Add(4, new Question("Enter engine volume", typeof(int), 0, int.MaxValue));
     }
 

@@ -7,12 +7,12 @@ public class AnswersValidator
         {
             if (i_Questions[key].m_Type == typeof(int) || i_Questions[key].m_Type == typeof(float))
             {
-                if (i_Questions[key].m_Type == typeof(int))
+                if (i_Questions[key].m_Type == typeof(int) || i_Questions[key].m_Type == typeof(float))
                 {
-                    int value = int.Parse(i_Answers[key]);
-                    if (value < (int)i_Questions[key].m_Min || value > (int)i_Questions[key].m_Max)
+                    float value = float.Parse(i_Answers[key]);
+                    if (value < (float)i_Questions[key].m_Min || value > (float)i_Questions[key].m_Max)
                     {
-                        throw new ValueRangeException(i_Questions[key].m_Question_text, (int)i_Questions[key].m_Min, (int)i_Questions[key].m_Max);
+                        throw new ValueRangeException(i_Questions[key].m_Question_text, (float)i_Questions[key].m_Min, (float)i_Questions[key].m_Max);
                     }
                 }
             }
