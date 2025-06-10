@@ -16,7 +16,8 @@ namespace Ex03.GarageLogic
             int i = 0;
             foreach (string line in lines)
             {
-                if (line.StartsWith("*")){
+                if (line.StartsWith("*"))
+                {
                     break;
                 }
                 //for vehiclde in vehicles.db, use constructor to create vehicle
@@ -40,21 +41,29 @@ namespace Ex03.GarageLogic
         {
             m_Vehicles_Status[licensePlate] = (status, m_Vehicles_Status[licensePlate].Item2);
         }
-        public List<Vehicle> getListOfVehicles(string status)
+        public List<Vehicle> getListOfVehicles(int i_status)
         {
-            List<Vehicle> vehicles = new List<Vehicle>();
-            if (status == "")
+            eVehicleStatus status;
+            switch (i_status)
             {
-                vehicles = m_Vehicles.Values.ToList();
+                case 1:
+                    status = eVehicleStatus.InRepair;
+                    break;
+                case 2:
+                    status = eVehicleStatus.Repaired;
+                    break;
+                case 3:
+                    status = eVehicleStatus.Paid;
+                    break;
+                default:
+                    throw new ArgumentException("Invalid status");
             }
-            else
+            List<Vehicle> vehicles = new List<Vehicle>();
+            foreach (string LicensePlate in m_Vehicles_Status.Keys)
             {
-                foreach (string LicensePlate in m_Vehicles_Status.Keys)
+                if (m_Vehicles_Status[LicensePlate].Item1 == status)
                 {
-                    if (m_Vehicles_Status[LicensePlate].Item1 == (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), status))
-                    {
-                        vehicles.Add(m_Vehicles[LicensePlate]);
-                    }
+                    vehicles.Add(m_Vehicles[LicensePlate]);
                 }
             }
             return vehicles;

@@ -49,7 +49,7 @@ public class Program
                     break;
                 case "9":
                     exit = true;
-                    throw new Exception("Thank you and see you next time!");
+                    Console.WriteLine("Thank you and see you next time!");
                     break;
                 default:
                     Console.WriteLine("Invalid choice");
@@ -64,7 +64,7 @@ public class Program
         //load vehicles from `Vehicles.db`
         try
         {
-            garage.LoadVehicles();  
+            garage.LoadVehicles();
             Console.WriteLine("Vehicles loaded successfully");
         }
         catch (Exception ex)
@@ -83,9 +83,9 @@ public class Program
                 Console.WriteLine($"{i} - {VehicleType}");
                 i++;
             }
-            Console.WriteLine($"Enter the vehicle type number: 0-{i-1}");
-            if (int.TryParse(Console.ReadLine(), out int typeNumber) && 
-                typeNumber >= 0 && 
+            Console.WriteLine($"Enter the vehicle type number: 0-{i - 1}");
+            if (int.TryParse(Console.ReadLine(), out int typeNumber) &&
+                typeNumber >= 0 &&
                 typeNumber < VehicleCreator.SupportedTypes.Count)
             {
                 return VehicleCreator.SupportedTypes[typeNumber];
@@ -145,9 +145,15 @@ public class Program
 
     private static void ShowListOfVehicles()
     {
-        Console.WriteLine("Optionally enter the status filter:");
-        string status = Console.ReadLine();
-        List<Vehicle> vehicles = garage.getListOfVehicles(status);
+        Console.WriteLine("Optionally enter the status filter: 1. InRepair, 2. Repaired, 3. Paid");
+        int status = int.Parse(Console.ReadLine());
+        List<Vehicle> vehicles;
+        try { vehicles = garage.getListOfVehicles(status); }
+        catch (ArgumentException ae)
+        {
+            Console.WriteLine("Invalid input, try again");
+            return;
+        }
         Console.WriteLine("List of vehicles:");
         int i = 0;
         foreach (Vehicle vehicle in vehicles)
@@ -167,7 +173,7 @@ public class Program
             licensePlate = Console.ReadLine();
             if (licensePlate.ToUpper() == "X")
             {
-                throw new Exception("Exiting...");
+                return null;
             }
         }
         return garage.getVehicle(licensePlate);
@@ -177,6 +183,11 @@ public class Program
         try
         {
             Vehicle vehicle = getVehiclebyLicensePlate();
+            if (vehicle == null)
+            {
+                Console.WriteLine("Operation cancelled");
+                return;
+            }
             Console.WriteLine("Enter the new status: (1-3)");
             Console.WriteLine("1. InRepair");
             Console.WriteLine("2. Repaired");
@@ -225,6 +236,11 @@ public class Program
         try
         {
             Vehicle vehicle = getVehiclebyLicensePlate();
+            if (vehicle == null)
+            {
+                Console.WriteLine("Operation cancelled");
+                return;
+            }
             garage.InflateTiresToMaxPressure(vehicle.m_LicenseID);
             Console.WriteLine("Tires inflated to max pressure successfully");
         }
@@ -247,6 +263,11 @@ public class Program
         try
         {
             Vehicle vehicle = getVehiclebyLicensePlate();
+            if (vehicle == null)
+            {
+                Console.WriteLine("Operation cancelled");
+                return;
+            }
             string fuelType;
             Console.WriteLine("Enter the fuel type:");
             int i = 0;
@@ -293,6 +314,11 @@ public class Program
         try
         {
             Vehicle vehicle = getVehiclebyLicensePlate();
+            if (vehicle == null)
+            {
+                Console.WriteLine("Operation cancelled");
+                return;
+            }
             Console.WriteLine("Enter the amount of time to charge in minutes:");
             float time = float.Parse(Console.ReadLine());
             garage.chargeVehicle(vehicle.m_LicenseID, time);
@@ -314,6 +340,11 @@ public class Program
     private static void DisplayFullVehicleDetails()
     {
         Vehicle vehicle = getVehiclebyLicensePlate();
+        if (vehicle == null)
+        {
+            Console.WriteLine("Operation cancelled");
+            return;
+        }
         Console.WriteLine(vehicle);
     }
 }
