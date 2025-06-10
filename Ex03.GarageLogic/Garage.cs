@@ -5,6 +5,11 @@ namespace Ex03.GarageLogic
         private Dictionary<string, Vehicle> m_Vehicles = new Dictionary<string, Vehicle>();
         private Dictionary<string, (eVehicleStatus, ContactDetails)> m_Vehicles_Status = new Dictionary<string, (eVehicleStatus, ContactDetails)>();
 
+        public void addVehicle(Vehicle vehicle, ContactDetails contactDetails)
+        {
+            m_Vehicles.Add(vehicle.m_LicenseID, vehicle);
+            m_Vehicles_Status.Add(vehicle.m_LicenseID, (eVehicleStatus.InRepair, contactDetails));
+        }
         public void LoadVehicles()
         {
             //example for line in db: FuelMotorcycle,75-321-22,Honda-CB650R,68,Michelin,28,Tom,052-1234560,A2,750

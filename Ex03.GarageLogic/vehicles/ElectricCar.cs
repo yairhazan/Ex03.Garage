@@ -23,10 +23,10 @@ public class ElectricCar : Car
         float tire_pressure = float.Parse(i_Answers[2]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException(0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
         }
         m_Color = (eCarColor)Enum.Parse(typeof(eCarColor), i_Answers[3]);
-        m_Doors = (eCarDoors)Enum.Parse(typeof(eCarDoors), i_Answers[4]);
+        m_Doors = int.Parse(i_Answers[4]);
         float hours_left_in_battery = float.Parse(i_Answers[5]);
 
         m_ElectricEngine = new ElectricEngine(k_MaxBatteryTime, hours_left_in_battery);
@@ -43,10 +43,10 @@ public class ElectricCar : Car
         float tire_pressure = float.Parse(i_DB_Fields[5]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException(0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
         }
         m_Color = (eCarColor)Enum.Parse(typeof(eCarColor), i_DB_Fields[8]);
-        m_Doors = (eCarDoors)Enum.Parse(typeof(eCarDoors), i_DB_Fields[9]);
+        m_Doors = int.Parse(i_DB_Fields[9]);
         float energy_percentage = float.Parse(i_DB_Fields[3]);
         float current_battery_time = energy_percentage * k_MaxBatteryTime;
 

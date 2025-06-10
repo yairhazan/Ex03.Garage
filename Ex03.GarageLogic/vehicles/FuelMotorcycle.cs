@@ -27,7 +27,7 @@ public class FuelMotorcycle : Motorcycle
         float tire_pressure = float.Parse(i_Answers[2]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException(0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
         }
         m_LicenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), i_Answers[3]);
         m_EngineVolume = int.Parse(i_Answers[4]);
@@ -47,7 +47,7 @@ public class FuelMotorcycle : Motorcycle
         float tire_pressure = float.Parse(i_DB_Fields[5]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException(0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
         }
         m_LicenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), i_DB_Fields[8]);
         m_EngineVolume = int.Parse(i_DB_Fields[9]);

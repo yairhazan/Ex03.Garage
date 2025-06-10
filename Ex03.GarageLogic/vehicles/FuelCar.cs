@@ -1,10 +1,8 @@
 namespace Ex03.GarageLogic.Vehicles;
 
 public class FuelCar : Car
-{   
-    private eCarColor m_Color{get; set;}
-    private eCarDoors m_Doors{get; set;}
-    private FuelEngine m_FuelEngine{get; set;}
+{
+    private FuelEngine m_FuelEngine { get; set; }
     private readonly float k_MaxFuelAmount = 48f;
     public FuelCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
@@ -27,10 +25,10 @@ public class FuelCar : Car
         float tire_pressure = float.Parse(i_Answers[2]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException(0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
         }
         m_Color = (eCarColor)Enum.Parse(typeof(eCarColor), i_Answers[3]);
-        m_Doors = (eCarDoors)Enum.Parse(typeof(eCarDoors), i_Answers[4]);
+        m_Doors = int.Parse(i_Answers[4]);
         float fuel_amount = float.Parse(i_Answers[5]);
         eFuelType fuel_type = (eFuelType)Enum.Parse(typeof(eFuelType), i_Answers[6]);
 
@@ -50,10 +48,10 @@ public class FuelCar : Car
         float tire_pressure = float.Parse(i_DB_Fields[5]);
         if (tire_pressure > k_max_tire_pressure)
         {
-            throw new ValueRangeException(0, k_max_tire_pressure);
+            throw new ValueRangeException("tire pressure", 0, k_max_tire_pressure);
         }
         m_Color = (eCarColor)Enum.Parse(typeof(eCarColor), i_DB_Fields[8]);
-        m_Doors = (eCarDoors)Enum.Parse(typeof(eCarDoors), i_DB_Fields[9]);
+        m_Doors = int.Parse(i_DB_Fields[9]);
         float fuel_percentage = float.Parse(i_DB_Fields[3]);
         float current_fuel_amount = fuel_percentage * k_MaxFuelAmount;
         m_FuelEngine = new FuelEngine(k_MaxFuelAmount, current_fuel_amount, eFuelType.Octan95);
@@ -63,4 +61,4 @@ public class FuelCar : Car
         }
     }
 
-}   
+}

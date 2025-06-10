@@ -17,7 +17,7 @@ public class Truck : Vehicle
     {
 
         base.m_Questions.Add(5, new Question("Enter the current fuel amount", typeof(float), 0, k_MaxFuelAmount));
-        base.m_Questions.Add(8, new Question("Enter if the truck is carrying dangerous materials", typeof(bool)));
+        base.m_Questions.Add(8, new Question("Is the truck carrying dangerous materials? 0 for no, 1 for yes", typeof(bool)));
         base.m_Questions.Add(9, new Question("Enter the max carrying weight", typeof(float), 0, int.MaxValue));
 
         m_engine = new FuelEngine(k_MaxFuelAmount, 0, k_FuelType);
@@ -35,7 +35,7 @@ public class Truck : Vehicle
         float tire_pressure = float.Parse(i_Answers[2]);
         if (tire_pressure > k_MaxTirePressure)
         {
-            throw new ValueRangeException(0, k_MaxTirePressure);
+            throw new ValueRangeException("tire pressure", 0, k_MaxTirePressure);
         }
         float current_fuel = float.Parse(i_Answers[5]);
         m_IsCarryingDangerousMaterials = bool.Parse(i_Answers[8]);
@@ -56,7 +56,7 @@ public class Truck : Vehicle
         float tire_pressure = float.Parse(i_DB_Fields[5]);
         if (tire_pressure > k_MaxTirePressure)
         {
-            throw new ValueRangeException(0, k_MaxTirePressure);
+            throw new ValueRangeException("tire pressure", 0, k_MaxTirePressure);
         }
         m_IsCarryingDangerousMaterials = bool.Parse(i_DB_Fields[8]);
         m_MaxCarryingWeight = float.Parse(i_DB_Fields[9]);

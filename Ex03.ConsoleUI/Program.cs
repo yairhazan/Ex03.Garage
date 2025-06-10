@@ -111,6 +111,11 @@ public class Program
         {
             Console.WriteLine("Vehicle does not exist, creating new vehicle");
             string vehicleType = getVehicleType();
+            Console.WriteLine("Enter the owner name:");
+            string ownerName = Console.ReadLine();
+            Console.WriteLine("Enter the owner phone:");
+            string ownerPhone = Console.ReadLine();
+            ContactDetails contactDetails = new ContactDetails(ownerName, ownerPhone);
             Console.WriteLine("Enter the model name:");
             string modelName = Console.ReadLine();
             try
@@ -126,6 +131,7 @@ public class Program
                     answers.Add(question.Key, answer);
                 }
                 newVehicle.parseAnswers(answers);
+                garage.addVehicle(newVehicle, contactDetails);
                 Console.WriteLine("Vehicle created successfully");
             }
             catch (ArgumentException ae)
