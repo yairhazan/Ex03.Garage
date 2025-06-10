@@ -2,13 +2,12 @@ namespace Ex03.GarageLogic.Vehicles;
 
 public class FuelCar : Car
 {
-    private FuelEngine m_FuelEngine { get; set; }
     private readonly float k_MaxFuelAmount = 48f;
     public FuelCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
         base.m_Questions.Add(5, new Question("Enter fuel amount", typeof(float)));
         base.m_Questions.Add(6, new Question("Enter fuel type (Octan95, Octan96, Octan98, Soler)", typeof(string)));
-        m_FuelEngine = new FuelEngine(48f, 0, eFuelType.Octan95);
+        base.m_Engine = new FuelEngine(48f, 0, eFuelType.Octan95);
 
     }
 
@@ -32,7 +31,7 @@ public class FuelCar : Car
         float fuel_amount = float.Parse(i_Answers[5]);
         eFuelType fuel_type = (eFuelType)Enum.Parse(typeof(eFuelType), i_Answers[6]);
 
-        m_FuelEngine = new FuelEngine(k_MaxFuelAmount, fuel_amount, fuel_type);
+        base.m_Engine = new FuelEngine(k_MaxFuelAmount, fuel_amount, fuel_type);
 
         for (int i = 0; i < k_TireNumber; i++)
         {
@@ -54,11 +53,14 @@ public class FuelCar : Car
         m_Doors = int.Parse(i_DB_Fields[9]);
         float fuel_percentage = float.Parse(i_DB_Fields[3]);
         float current_fuel_amount = fuel_percentage * k_MaxFuelAmount;
-        m_FuelEngine = new FuelEngine(k_MaxFuelAmount, current_fuel_amount, eFuelType.Octan95);
+        base.m_Engine = new FuelEngine(k_MaxFuelAmount, current_fuel_amount, eFuelType.Octan95);
         for (int i = 0; i < k_TireNumber; i++)
         {
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_max_tire_pressure));
         }
     }
-
+    public override string ToString()
+    {
+        return base.ToString() + $"\nType: Fuel Car";
+    }
 }

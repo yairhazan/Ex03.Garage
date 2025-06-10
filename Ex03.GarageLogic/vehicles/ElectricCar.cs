@@ -2,12 +2,11 @@ namespace Ex03.GarageLogic.Vehicles;
 
 public class ElectricCar : Car
 {
-    private ElectricEngine m_ElectricEngine;
     private readonly float k_MaxBatteryTime = 3.2f;
     public ElectricCar(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
         base.m_Questions.Add(5, new Question("Enter hours left in battery", typeof(float)));
-        m_ElectricEngine = new ElectricEngine(k_MaxBatteryTime, 0);
+        base.m_Engine = new ElectricEngine(k_MaxBatteryTime, 0);
     }
 
     public override Dictionary<int, Question> getQuestions()
@@ -29,7 +28,7 @@ public class ElectricCar : Car
         m_Doors = int.Parse(i_Answers[4]);
         float hours_left_in_battery = float.Parse(i_Answers[5]);
 
-        m_ElectricEngine = new ElectricEngine(k_MaxBatteryTime, hours_left_in_battery);
+        base.m_Engine = new ElectricEngine(k_MaxBatteryTime, hours_left_in_battery);
 
         for (int i = 0; i < k_TireNumber; i++)
         {
@@ -50,11 +49,15 @@ public class ElectricCar : Car
         float energy_percentage = float.Parse(i_DB_Fields[3]);
         float current_battery_time = energy_percentage * k_MaxBatteryTime;
 
-        m_ElectricEngine = new ElectricEngine(k_MaxBatteryTime, current_battery_time);
+        base.m_Engine = new ElectricEngine(k_MaxBatteryTime, current_battery_time);
 
         for (int i = 0; i < k_TireNumber; i++)
         {
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_max_tire_pressure));
         }
+    }
+    public override string ToString()
+    {
+        return base.ToString() + $"\nType: Electric Car";
     }
 }

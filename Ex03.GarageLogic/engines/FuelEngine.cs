@@ -1,6 +1,6 @@
 public class FuelEngine : Engine
 {
-    private readonly eFuelType m_FuelType;
+    public eFuelType m_FuelType { get; set; }
 
     public FuelEngine(float i_MaxFuelAmount, float i_CurrentFuelAmount, eFuelType i_FuelType) : base(i_MaxFuelAmount, i_CurrentFuelAmount)
     {

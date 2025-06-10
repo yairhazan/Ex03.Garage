@@ -152,9 +152,12 @@ public class Program
     private static void ShowListOfVehicles()
     {
         Console.WriteLine("Optionally enter the status filter: 1. InRepair, 2. Repaired, 3. Paid");
-        int status = int.Parse(Console.ReadLine());
+        string status = Console.ReadLine();
+        int i_status;
+        if (status == "") { i_status = 4; }
+        else { i_status = int.Parse(status); }
         List<Vehicle> vehicles;
-        try { vehicles = garage.getListOfVehicles(status); }
+        try { vehicles = garage.getListOfVehicles(i_status); }
         catch (ArgumentException ae)
         {
             Console.WriteLine("Invalid input, try again");
@@ -274,7 +277,7 @@ public class Program
                 Console.WriteLine("Operation cancelled");
                 return;
             }
-            string fuelType;
+            eFuelType fuelType;
             Console.WriteLine("Enter the fuel type:");
             int i = 0;
             foreach (eFuelType fuel in Enum.GetValues(typeof(eFuelType)))
@@ -282,10 +285,23 @@ public class Program
                 Console.WriteLine($"{i} - {fuel}");
                 i++;
             }
-            fuelType = Console.ReadLine();
-            if (!Enum.IsDefined(typeof(eFuelType), fuelType))
+            string fuelTypeInput = Console.ReadLine();
+            switch (fuelTypeInput)
             {
-                throw new ArgumentException("Invalid fuel type");
+                case "0":
+                    fuelType = eFuelType.Octan95;
+                    break;
+                case "1":
+                    fuelType = eFuelType.Octan96;
+                    break;
+                case "2":
+                    fuelType = eFuelType.Octan98;
+                    break;
+                case "3":
+                    fuelType = eFuelType.Soler;
+                    break;
+                default:
+                    throw new ArgumentException("Invalid fuel type");
             }
 
             float amount;

@@ -6,10 +6,8 @@ public class Truck : Vehicle
 {
     private bool m_IsCarryingDangerousMaterials;
     private float m_MaxCarryingWeight;
-
     private readonly int k_TireNumber = 12;
     private readonly int k_MaxTirePressure = 26;
-    private FuelEngine m_engine;
     private readonly float k_MaxFuelAmount = 135f;
     private readonly eFuelType k_FuelType = eFuelType.Soler;
 
@@ -20,7 +18,7 @@ public class Truck : Vehicle
         base.m_Questions.Add(8, new Question("Is the truck carrying dangerous materials? 0 for no, 1 for yes", typeof(bool)));
         base.m_Questions.Add(9, new Question("Enter the max carrying weight", typeof(float), 0, int.MaxValue));
 
-        m_engine = new FuelEngine(k_MaxFuelAmount, 0, k_FuelType);
+        base.m_Engine = new FuelEngine(k_MaxFuelAmount, 0, k_FuelType);
     }
 
     public override Dictionary<int, Question> getQuestions()
@@ -40,7 +38,7 @@ public class Truck : Vehicle
         float current_fuel = float.Parse(i_Answers[5]);
         m_IsCarryingDangerousMaterials = bool.Parse(i_Answers[8]);
         m_MaxCarryingWeight = float.Parse(i_Answers[9]);
-        m_engine = new FuelEngine(k_MaxFuelAmount, current_fuel, k_FuelType);
+        base.m_Engine = new FuelEngine(k_MaxFuelAmount, current_fuel, k_FuelType);
         for (int i = 0; i < k_TireNumber; i++)
         {
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_MaxTirePressure));
@@ -60,7 +58,7 @@ public class Truck : Vehicle
         }
         m_IsCarryingDangerousMaterials = bool.Parse(i_DB_Fields[8]);
         m_MaxCarryingWeight = float.Parse(i_DB_Fields[9]);
-        m_engine = new FuelEngine(k_MaxFuelAmount, current_fuel, k_FuelType);
+        base.m_Engine = new FuelEngine(k_MaxFuelAmount, current_fuel, k_FuelType);
         for (int i = 0; i < k_TireNumber; i++)
         {
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_MaxTirePressure));
@@ -69,6 +67,6 @@ public class Truck : Vehicle
 
     public override string ToString()
     {
-        return $"{base.ToString()}\nCarrying dangerous materials: {m_IsCarryingDangerousMaterials}\nMax carrying weight: {m_MaxCarryingWeight:F1} tons";
+        return $"{base.ToString()}\nCarrying dangerous materials: {m_IsCarryingDangerousMaterials}\nMax carrying weight: {m_MaxCarryingWeight:F1} tons\nType: Truck";
     }
 }

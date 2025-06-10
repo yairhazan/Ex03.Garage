@@ -6,12 +6,11 @@ namespace Ex03.GarageLogic.Vehicles;
 
 public class ElectricMotorcycle : Motorcycle
 {
-    private ElectricEngine m_engine;
     private readonly float k_MaxBatteryTime = 3.2f;
     public ElectricMotorcycle(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
         base.m_Questions.Add(5, new Question("Enter hours left in battery", typeof(float)));
-        m_engine = new ElectricEngine(k_MaxBatteryTime, 0);
+        base.m_Engine = new ElectricEngine(k_MaxBatteryTime, 0);
 
     }
 
@@ -34,7 +33,7 @@ public class ElectricMotorcycle : Motorcycle
         m_EngineVolume = int.Parse(i_Answers[4]);
         float hours_left_in_battery = float.Parse(i_Answers[5]);
 
-        m_engine = new ElectricEngine(k_MaxBatteryTime, hours_left_in_battery);
+        base.m_Engine = new ElectricEngine(k_MaxBatteryTime, hours_left_in_battery);
 
         for (int i = 0; i < k_TireNumber; i++)
         {
@@ -56,11 +55,14 @@ public class ElectricMotorcycle : Motorcycle
         m_EngineVolume = int.Parse(i_DB_Fields[9]);
         float energy_percentage = float.Parse(i_DB_Fields[3]);
         float current_battery_time = energy_percentage * k_MaxBatteryTime;
-        m_engine = new ElectricEngine(k_MaxBatteryTime, current_battery_time);
+        base.m_Engine = new ElectricEngine(k_MaxBatteryTime, current_battery_time);
         for (int i = 0; i < k_TireNumber; i++)
         {
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_max_tire_pressure));
         }
     }
-
+    public override string ToString()
+    {
+        return base.ToString() + $"\nType: Electric Motorcycle";
+    }
 }

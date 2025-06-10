@@ -5,13 +5,13 @@ public class FuelMotorcycle : Motorcycle
     //FuelMotorcycle,68,Michelin,28,Tom,052-1234560,A2,750
 
 
-    private FuelEngine m_engine;
+
     private readonly eFuelType k_FuelType = eFuelType.Octan98;
     private readonly float k_MaxFuelAmount = 5.8f;
     public FuelMotorcycle(string i_LicenseID, string i_ModelName) : base(i_LicenseID, i_ModelName)
     {
         base.m_Questions.Add(5, new Question("Enter current fuel amount", typeof(float)));
-        m_engine = new FuelEngine(k_MaxFuelAmount, 0, k_FuelType);
+        base.m_Engine = new FuelEngine(k_MaxFuelAmount, 0, k_FuelType);
     }
 
     public override Dictionary<int, Question> getQuestions()
@@ -33,7 +33,7 @@ public class FuelMotorcycle : Motorcycle
         m_EngineVolume = int.Parse(i_Answers[4]);
         float current_fuel = float.Parse(i_Answers[5]);
 
-        m_engine = new FuelEngine(k_MaxFuelAmount, current_fuel, k_FuelType);
+        base.m_Engine = new FuelEngine(k_MaxFuelAmount, current_fuel, k_FuelType);
 
         for (int i = 0; i < k_TireNumber; i++)
         {
@@ -53,11 +53,15 @@ public class FuelMotorcycle : Motorcycle
         m_EngineVolume = int.Parse(i_DB_Fields[9]);
         float fuel_percentage = float.Parse(i_DB_Fields[3]);
         float current_fuel = fuel_percentage * k_MaxFuelAmount;
-        m_engine = new FuelEngine(k_MaxFuelAmount, current_fuel, k_FuelType);
+        base.m_Engine = new FuelEngine(k_MaxFuelAmount, current_fuel, k_FuelType);
         for (int i = 0; i < k_TireNumber; i++)
         {
             m_Tires.Add(new Tire(tire_model, tire_pressure, k_max_tire_pressure));
         }
+    }
+    public override string ToString()
+    {
+        return base.ToString() + $"\nType: Fuel Motorcycle";
     }
 }
 

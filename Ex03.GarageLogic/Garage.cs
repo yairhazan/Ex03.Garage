@@ -60,6 +60,8 @@ namespace Ex03.GarageLogic
                 case 3:
                     status = eVehicleStatus.Paid;
                     break;
+                case 4:
+                    return m_Vehicles.Values.ToList();
                 default:
                     throw new ArgumentException("Invalid status");
             }
@@ -84,12 +86,24 @@ namespace Ex03.GarageLogic
                 tire.Inflate(tire.getMaxAirPressure() - tire.getCurrentAirPressure());
             }
         }
-        public void refuelVehicle(string licensePlate, string fuelType, float amount)
+        public void refuelVehicle(string licensePlate, eFuelType fuelType, float amount)
         {
+            if (!(m_Vehicles[licensePlate].getEngine() is FuelEngine))
+            {
+                throw new ArgumentException("Vehicle is not fuel");
+            }
+            if (fuelType != ((FuelEngine)m_Vehicles[licensePlate].getEngine()).m_FuelType)
+            {
+                throw new ArgumentException("Wrong fuel type");
+            }
             m_Vehicles[licensePlate].getEngine().FillEnergy(amount);
         }
         public void chargeVehicle(string licensePlate, float time)
         {
+            if (m_Vehicles[licensePlate].getEngine() is not ElectricEngine)
+            {
+                throw new ArgumentException("Vehicle is not electric");
+            }
             m_Vehicles[licensePlate].getEngine().FillEnergy(time);
         }
 

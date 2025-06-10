@@ -3,7 +3,6 @@ namespace Ex03.GarageLogic;
 public abstract class Vehicle
 {
     protected Engine m_Engine;
-
     public string m_LicenseID;
     public string m_ModelName;
     public List<Tire> m_Tires = new List<Tire>();
